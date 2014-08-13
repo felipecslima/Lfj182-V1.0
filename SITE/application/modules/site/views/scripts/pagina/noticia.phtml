@@ -1,0 +1,20 @@
+<div id="NOTICIA" class="pagina_lista">
+	<h1>Notícias</h1>
+	<?if(count($this->vo)):?>
+		<div class="media">
+			<? foreach ($this->vo as $oPagina): ?>
+				<a href="<?= $oPagina->getLink() ?>" class="pull-left">
+					<?= $oPagina->getImgDestaque(array(60,60)) ?>
+				</a>
+				<div class="media-body">
+					<span><?= $oPagina->getDataF() ?></span>
+					<h4 class="media-heading"><a href="<?= $oPagina->getLink() ?>"><?= $oPagina->TITULO ?></a></h4>
+					<p><a href="<?= $oPagina->getLink() ?>"><?= $oPagina->RESUMO ?></a></p>
+				</div>
+			<? endforeach; ?>
+		</div>
+		<? $this->paginationControl($this->vo,'Sliding','_includes/paginacao.phtml')?>
+	<? else:?>
+		<p>Nenhuma notícia encontrada.</p>
+	<? endif;?>
+</div>

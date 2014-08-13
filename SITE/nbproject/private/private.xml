@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Volumes/PROJETOS/modelo2.1/SITE/application/modules/adm/controllers/NoticiaController.php</file>
+            <file>file:/Volumes/PROJETOS/modelo2.1/SITE/application/modules/adm/controllers/PaginaController.php</file>
+            <file>file:/Volumes/PROJETOS/modelo2.1/SITE/application/modules/adm/views/scripts/pagina/lista.phtml</file>
+            <file>file:/Volumes/PROJETOS/modelo2.1/SITE/application/modules/adm/forms/PagPaginaNot.php</file>
+            <file>file:/Volumes/PROJETOS/modelo2.1/SITE/application/modules/adm/forms/PagPagina.php</file>
+            <file>file:/Volumes/PROJETOS/modelo2.1/SITE/application/db/PagPagina.php</file>
+            <file>file:/Volumes/PROJETOS/modelo2.1/SITE/application/db/PagNoticiaTag.php</file>
+            <file>file:/Volumes/PROJETOS/modelo2.1/SITE/application/modules/adm/views/scripts/_includes/menu.phtml</file>
+            <file>file:/Volumes/PROJETOS/modelo2.1/SITE/application/modules/adm/views/scripts/usuario/index.phtml</file>
+            <file>file:/Volumes/PROJETOS/modelo2.1/SITE/application/plugins/Inicializacao.php</file>
+            <file>file:/Volumes/PROJETOS/modelo2.1/SITE/application/modules/adm/views/scripts/auxiliar/arquivo.phtml</file>
+            <file>file:/Volumes/PROJETOS/modelo2.1/SITE/public_html/library/jquery-migrate-1.2.1.min.js</file>
+            <file>file:/Volumes/PROJETOS/modelo2.1/SITE/public_html/library/jquery-ui-1.10.2.custom/ui.js</file>
+            <file>file:/Volumes/PROJETOS/modelo2.1/SITE/application/layouts/layout_site.phtml</file>
+        </group>
+    </open-files>
+</project-private>

@@ -1,0 +1,129 @@
+<?
+echo $this->doctype('XHTML1_STRICT');
+header("Content-Type: text/html; charset=utf-8");
+$bHead = new Business_Head();
+$bHead->loadDefault()->loadByModule();
+$confUrlImg =  (array) Zend_Registry::get("urlImg");
+
+//Business_Util::debug($confUrlImg);
+
+$request = ZC_Util::getData();
+
+$urlBase = "http://" . $_SERVER['SERVER_NAME'];
+$url = "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+if ($request["controller"] == "index") {
+    if (in_array($request["action"], array("index"))) {
+        $verificaHome = "home";
+        $pagInicial = true;
+    }
+}
+if ($request["controller"] == "pagina") {
+    $pagInterna = true;
+    $verificaHome = "interna";
+    $includeLateral = true;
+    if (in_array($request["action"], array("sobre"))) {
+        $areaSobre = true;
+        $pagSobre = true;
+        if ($request["action"] == "") {
+
+        }
+    }
+}
+
+?>
+<html>
+<head>
+    <?=$bHead->getTitle();?>
+    <meta name="language" content="pt-br" />
+    <meta http-equiv="imagetoolbar" content="no"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+    <link rel="shortcut icon" href="<?= $this->baseUrl($confUrlImg['favicon']); ?>" type="image/<?= $confUrlImg['favicon_ext'] ?>" />
+    <link rel="alternate" type="application/rss+xml" title="Site &raquo; Feed" href="/feed/" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Libra Design + Tech" />
+    <? if ($pagInicial): ?>
+    <meta name="keywords" content="" />
+    <meta property="og:description" content="" />
+    <meta name="description" content="" />
+<meta property="og:title" content="<?= $this->translate(Zend_Registry::get("oConfiguracao")->TITULO); ?>" />
+<? endif; ?>
+<meta property="og:url" content="<?= $url; ?>" />
+<meta property="og:image" content="<?= $urlBase; ?>/imagem/logo-mini.jpg" />
+<meta property="og:site_name" content="<?= $this->translate(Zend_Registry::get("oConfiguracao")->TITULO); ?>" />
+<meta property="og:type" content="website" />
+<script src="/library/holder/holder.js"></script>
+<?= $bHead->show(); ?>
+</head>
+<body>
+    <a class="sr-only" href="#content">Pular para conteúdo</a>
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div id="TOPO" class="navbar-header">
+
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse-menu">
+                    <span class="sr-only">Navegação</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="logo navbar-brand" href="<?= $this->baseUrl('/') ?>" alt="<?= Zend_Registry::get('SITE_NAME'); ?> - Página Inicial" title="Página Inicial">
+                    <img data-src="holder.js/160x20" class="" alt="logotipo <?= Zend_Registry::get('SITE_NAME'); ?>">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="collapse-menu">
+                <ul class="nav navbar-nav">
+                    <li class="<?= ZC_Util::isActiveLink('/index/index', array('active')); ?>">
+                        <a href="<?= $this->baseUrl('/') ?>"><?= $this->translate("Página Inicial") ?></a>
+                    </li>
+                    <li class="<?= ZC_Util::isActiveLink('/pagina/institucional/ID/1', array('active')); ?>">
+                        <a href="<?= $this->baseUrl('/pagina/institucional/quem-somos') ?>"><?= $this->translate("Quem Somos") ?></a>
+                    </li>
+                    <li class="<?= ZC_Util::isActiveLink('/pagina/noticia/', array('active')); ?>">
+                        <a href="<?= $this->baseUrl('/pagina/noticia/') ?>"><?= $this->translate("Noticias") ?></a>
+                    </li>
+                    <li class="<?= ZC_Util::isActiveLink('/pagina/contato/', array('active')); ?>">
+                        <a href="<?= $this->baseUrl('/pagina/contato/') ?>"><?= $this->translate("Contato") ?></a>
+                    </li>
+                </ul>
+                <form class="busca navbar-form navbar-left" method="POST" action="<?= $this->baseUrl('/busca'); ?>">
+                    <div class="form-group">
+                        <label>Buscar no site:</label>
+                        <input type="text" name="BUSCA" id="BUSCA" class="form-control"/>
+                    </div> <!-- .form-group -->
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </form>
+                <ul class="lang nav navbar-nav navbar-right">
+                    <li><a href="<?= $this->url(array('lang' => 'pt')); ?>">pt</a></li>
+                    <li><a href="<?= $this->url(array('lang' => 'en')); ?>">en</a></li>
+                    <li><a href="<?= $this->url(array('lang' => 'es')); ?>">es</a></li>
+                </ul>
+            </div> <!-- .navbar-collapse -->
+        </div> <!-- .container -->
+    </div> <!-- .navbar -->
+    <div class="extra-central">
+        <div class="site-central">
+            <div id="content" class="site-conteudo"> 
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 menu">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">link</a>
+                                <a href="#" class="list-group-item">link</a>
+                                <a href="#" class="list-group-item">link</a>
+                                <a href="#" class="list-group-item">link</a>
+                                <a href="#" class="list-group-item">link</a>
+                                <a href="#" class="list-group-item">link</a>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <?= $this->partial('_includes/mensagem_alerta.phtml', 'adm') ?>
+                            <?= $this->layout()->content; //pega o conteudo do view?>
+                        </div>
+                    </div> <!-- .row -->
+                </div> <!-- .container -->
+            </div> <!-- .site-conteudo -->
+        </div> <!-- .site-central -->
+    </div> <!-- .extra-central -->
+    <?= $this->partial('/_includes/inc_rodape.phtml'); ?>
+</body>
+</html>

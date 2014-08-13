@@ -1,0 +1,60 @@
+<?
+/*
+first				integer		First page number (i.e., 1)
+firstItemNumber		integer	 	Absolute number of the first item on this page
+firstPageInRange	integer	 	First page in the range returned by the scrolling style
+current				integer		Current page number
+currentItemCount	integer		Number of items on this page
+itemCountPerPage	integer		Maximum number of items available to each page
+last				integer		Last page number
+lastItemNumber		integer	 	Absolute number of the last item on this page
+lastPageInRange		integer	 	Last page in the range returned by the scrolling style
+next				integer		Next page number
+pageCount			integer		Number of pages
+pagesInRange		array	 	Array of pages returned by the scrolling style
+previous			integer		Previous page number
+totalItemCount		integer		Total number of items
+*/
+?>
+<div class="Paginacao">
+	<? if ($this->pageCount): ?>
+		
+		<? if ($this->current == 1): ?>
+			<img src="<?= $this->baseUrl('/imagem/adm/paginacao/primeiro_inativo.gif')?>" border="0" alt="" title="Primeiro" />
+		<? else: ?>
+			<a href="<?=$this->url(array('page'.$this->pagenome => $this->first)); ?>"><img src="<?= $this->baseUrl('/imagem/adm/paginacao/primeiro.gif')?>" border="0" alt="" title="Primeiro" /></a>
+		<? endif; ?>
+			
+		<!-- link Página Anterior -->
+		<? if (isset($this->previous)): ?>
+			<a href="<?=$this->url(array('page'.$this->pagenome => $this->previous)); ?>"><img src="<?= $this->baseUrl('/imagem/adm/paginacao/anterior.gif')?>" border="0" alt="" title="Anterior" /></a>
+		<? else: ?>
+			<span class="disabled"><img src="<?= $this->baseUrl()?>/imagem/adm/paginacao/anterior_inativo.gif" border="0" alt="" title="Anterior" /></span>
+		<? endif; ?>
+		&nbsp;&nbsp;
+		
+		<!-- Paginas Numeradas -->
+		Páginas:
+		<? foreach ($this->pagesInRange as $page): ?>
+			<? if ($page != $this->current): ?>
+				<a href="<?=$this->url(array('page'.$this->pagenome => $page)); ?>" class="Num"><?= $page; ?></a>
+			<? else: ?>
+				<a href="<?=$this->url(array('page'.$this->pagenome => $page)); ?>" class="NumMarcado"><?= $page; ?></a>
+			<? endif; ?>
+		<? endforeach; ?>
+		&nbsp;&nbsp;
+		
+		<!-- Próximas Página -->
+		<? if (isset($this->next)): ?>
+			<a href="<?=$this->url(array('page'.$this->pagenome => $this->next)); ?>"><img src="<?= $this->baseUrl('/imagem/adm/paginacao/proximo.gif')?>" border="0" alt="" title="Próximo" /></a>
+		<? else: ?>
+			<span class="disabled"><img src="<?= $this->baseUrl()?>/imagem/adm/paginacao/proximo_inativo.gif" border="0" alt="" title="Próximo" /></span>
+		<? endif; ?>
+		<? if ($this->current == $this->last): ?>
+			<img src="<?= $this->baseUrl('/imagem/adm/paginacao/ultimo_inativo.gif')?>" border="0" alt="" title="Último" />
+		<? else: ?>
+			<a href="<?=$this->url(array('page'.$this->pagenome => $this->last)); ?>"><img src="<?= $this->baseUrl('/imagem/adm/paginacao/ultimo.gif')?>" border="0" alt="" title="Último" /></a>
+		<? endif; ?>
+		
+	<? endif; ?>
+</div>
